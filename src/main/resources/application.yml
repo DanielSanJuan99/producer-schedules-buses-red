@@ -1,0 +1,34 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: producer-schedules-buses-red
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: admin
+    password: admin123
+    virtual-host: /
+
+rabbitmq:
+  exchange:
+    schedules: schedules.exchange
+  queue:
+    schedules: schedules.queue
+  routing-key:
+    schedules: schedules.routing.key
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.busesred: DEBUG
+    org.springframework.amqp: DEBUG
