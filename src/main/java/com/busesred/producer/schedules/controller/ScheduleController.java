@@ -33,18 +33,18 @@ public class ScheduleController {
             producerService.sendSchedule(scheduleMessage);
             
             Map<String, Object> response = new HashMap<>();
-            response.put("status", "success");
-            response.put("message", "Horario/cambio de ruta enviado a RabbitMQ correctamente");
-            response.put("data", scheduleMessage);
-            response.put("timestamp", LocalDateTime.now());
+            response.put("estado", "exitoso");
+            response.put("mensaje", "Horario/cambio de ruta enviado a RabbitMQ correctamente");
+            response.put("datos", scheduleMessage);
+            response.put("marca_tiempo", LocalDateTime.now());
             
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             log.error("Error al enviar horario/cambio de ruta: ", e);
             Map<String, Object> response = new HashMap<>();
-            response.put("status", "error");
-            response.put("message", "Error al enviar horario: " + e.getMessage());
-            response.put("timestamp", LocalDateTime.now());
+            response.put("estado", "error");
+            response.put("mensaje", "Error al enviar horario: " + e.getMessage());
+            response.put("marca_tiempo", LocalDateTime.now());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
@@ -52,9 +52,9 @@ public class ScheduleController {
     @GetMapping("/health")
     public ResponseEntity<Map<String, String>> health() {
         Map<String, String> response = new HashMap<>();
-        response.put("status", "UP");
-        response.put("service", "producer-schedules-buses-red");
-        response.put("timestamp", LocalDateTime.now().toString());
+        response.put("estado", "ACTIVO");
+        response.put("servicio", "producer-schedules-buses-red");
+        response.put("marca_tiempo", LocalDateTime.now().toString());
         return ResponseEntity.ok(response);
     }
 }
