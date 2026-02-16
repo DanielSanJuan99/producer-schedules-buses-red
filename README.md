@@ -106,6 +106,20 @@ Todos los campos usan español snake_case via `@JsonProperty`:
 | `RABBITMQ_USERNAME` | Usuario RabbitMQ | *(requerido)* |
 | `RABBITMQ_PASSWORD` | Contraseña RabbitMQ | *(requerido)* |
 
+## Configuración de Variables de Entorno
+
+El proyecto incluye un archivo `.env.example` con las variables necesarias:
+
+```bash
+# Copiar el archivo de ejemplo
+cp .env.example .env
+
+# Editar con tus valores
+nano .env
+```
+
+> **Nota:** En `docker-compose.yml` estas variables ya tienen valores por defecto. El `.env` solo es necesario si se desea ejecutar el contenedor de forma independiente con `docker run --env-file .env`, o para ejecución local con `export $(cat .env | xargs)`.
+
 ## Configuración RabbitMQ
 
 | Recurso | Nombre |
